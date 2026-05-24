@@ -24,6 +24,7 @@ cabal.project.local~
 .HTF/
 .ghc.environment.*
 node_modules/
+__pycache__/
 .DS_Store
 repl-parcel
 mytunes.ts
