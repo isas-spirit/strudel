@@ -12,6 +12,27 @@ Build a pipeline that lets Hermes reason about:
 
 We want a small number of high-value analysis views, not every possible chart all the time.
 
+## Current implementation status
+
+Implemented now:
+- `tools/analyze_audio.py`
+  - takes an audio file
+  - emits an analysis bundle with JSON + PNG aides
+  - currently writes:
+    - `*.analysis.json`
+    - `*.mel.png`
+    - `*.spectrogram.png`
+    - `*.chroma.png`
+    - `*.tempogram.png`
+    - `*.rms.png`
+    - `*.onset_strength.png`
+    - `*.centroid.png`
+
+Still missing:
+- programmatic Strudel code-to-WAV export for Hermes automation
+- pianoroll PNG export pipeline
+- higher-level orchestration wrapper for code-or-WAV analysis jobs
+
 ---
 
 ## Grounded current capabilities
