@@ -14,7 +14,7 @@ export const useExamplePatterns = () => {
     const pats = new Map();
     pats.set(patternFilterName.featured, featuredPatterns);
     pats.set(patternFilterName.public, publicPatterns);
-    // pats.set(patternFilterName.stock, stockPatterns);
+    pats.set('stock', stockPatterns);
     return pats;
   }, [featuredPatterns, publicPatterns]);
 

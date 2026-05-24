@@ -10,7 +10,7 @@ import {
 } from '../../../user_pattern_utils.mjs';
 import { useMemo, useRef } from 'react';
 import { getMetadata } from '../../../metadata_parser.js';
-import { useExamplePatterns } from '../../useExamplePatterns.jsx';
+import { useExamplePatterns, stockPatterns } from '../../useExamplePatterns.jsx';
 import { parseJSON, isUdels } from '../../util.mjs';
 import { useSettings } from '../../../settings.mjs';
 import { ActionButton } from '../button/action-button.jsx';
@@ -169,22 +169,36 @@ export function PatternsTab({ context }) {
       </div>
 
       <div className="overflow-auto">
-        {/* bg-background */}
-        {/* {patternFilter === patternFilterName.user && ( */}
+        {/* User patterns */}
+        {Object.keys(visiblePatterns).length > 0 && (
+          <>
+            <div className="px-2 py-1 text-xs text-muted border-b border-muted">Your Patterns</div>
+            <PatternButtons
+              onClick={(id) => {
+                updateCodeWindow(context, { ...userPatterns[id], collection: userPattern.collection }, patternAutoStart);
+
+                if (context.started && activePattern === id) {
+                  context.handleEvaluate();
+                }
+              }}
+              patterns={visiblePatterns}
+              started={context.started}
+              activePattern={activePattern}
+              viewingPatternID={viewingPatternID}
+            />
+          </>
+        )}
+        {/* Stock examples */}
+        <div className="px-2 py-1 text-xs text-muted border-b border-muted">Stock Examples</div>
         <PatternButtons
           onClick={(id) => {
-            updateCodeWindow(context, { ...userPatterns[id], collection: userPattern.collection }, patternAutoStart);
-
-            if (context.started && activePattern === id) {
-              context.handleEvaluate();
-            }
+            updateCodeWindow(context, { ...stockPatterns[id], collection: 'stock' }, patternAutoStart);
           }}
-          patterns={visiblePatterns}
+          patterns={stockPatterns}
           started={context.started}
           activePattern={activePattern}
           viewingPatternID={viewingPatternID}
         />
-        {/* )} */}
       </div>
     </div>
   );
