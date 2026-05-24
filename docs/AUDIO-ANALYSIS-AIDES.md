@@ -27,11 +27,17 @@ Implemented now:
     - `*.rms.png`
     - `*.onset_strength.png`
     - `*.centroid.png`
+- browser/runtime render helpers in `website/src/repl/custom/atlas-render.mjs`
+  - WAV rendering for current pattern
+  - pianoroll PNG rendering for current pattern
+  - combined render bundle helper
+- `packages/webaudio/webaudio.mjs` now also exposes `renderPatternAudioBlob(...)`
+  - same offline render path as export, but automation-friendly
 
 Still missing:
-- programmatic Strudel code-to-WAV export for Hermes automation
-- pianoroll PNG export pipeline
+- a fully persistent non-download artifact path for Hermes automation
 - higher-level orchestration wrapper for code-or-WAV analysis jobs
+- richer lane semantics for pianoroll color communication
 
 ---
 

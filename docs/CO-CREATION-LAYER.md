@@ -20,6 +20,7 @@ The design goal is to keep upstream Strudel mostly intact while giving us a dura
 - `website/src/repl/custom/atlas-functions.mjs`
 - `website/src/repl/custom/atlas-patterns.mjs`
 - `website/src/repl/custom/atlas-sample-library.mjs`
+- `website/src/repl/custom/atlas-render.mjs`
 - `website/src/repl/custom/index.mjs`
 
 ### Runtime wiring

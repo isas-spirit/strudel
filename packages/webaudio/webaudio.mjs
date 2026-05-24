@@ -37,16 +37,7 @@ export const webaudioOutput = (hap, _deadline, hapDuration, cps, t) => {
   return superdough(hap2value(hap), t, hapDuration, cps, hap.whole?.begin.valueOf());
 };
 
-export async function renderPatternAudio(
-  pattern,
-  cps,
-  begin,
-  end,
-  sampleRate,
-  maxPolyphony,
-  multiChannelOrbits,
-  downloadName = undefined,
-) {
+export async function renderPatternAudioBlob(pattern, cps, begin, end, sampleRate, maxPolyphony, multiChannelOrbits) {
   let audioContext = getAudioContext();
   await audioContext.close();
   audioContext = new OfflineAudioContext(2, ((end - begin) / cps) * sampleRate, sampleRate);
@@ -85,21 +76,36 @@ export async function renderPatternAudio(
     .then((renderedBuffer) => {
       const wavBuffer = audioBufferToWav(renderedBuffer);
       const blob = new Blob([wavBuffer], { type: 'audio/wav' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      downloadName = downloadName ? `${downloadName}.wav` : `${new Date().toISOString()}.wav`;
-      a.download = `${downloadName}`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      return { blob, wavBuffer, renderedBuffer };
     })
     .finally(async () => {
       setAudioContext(null);
       setSuperdoughAudioController(null);
       resetGlobalEffects();
     });
+}
+
+export async function renderPatternAudio(
+  pattern,
+  cps,
+  begin,
+  end,
+  sampleRate,
+  maxPolyphony,
+  multiChannelOrbits,
+  downloadName = undefined,
+) {
+  return renderPatternAudioBlob(pattern, cps, begin, end, sampleRate, maxPolyphony, multiChannelOrbits).then(({ blob }) => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    downloadName = downloadName ? `${downloadName}.wav` : `${new Date().toISOString()}.wav`;
+    a.download = `${downloadName}`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
 }
 
 export function webaudioRepl(options = {}) {
