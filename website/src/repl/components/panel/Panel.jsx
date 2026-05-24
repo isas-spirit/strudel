@@ -11,6 +11,7 @@ import { PatternsTab } from './PatternsTab';
 import { Reference } from './Reference';
 import { SettingsTab } from './SettingsTab';
 import { SoundsTab } from './SoundsTab';
+import { UtilitiesTab } from './UtilitiesTab';
 import { WelcomeTab } from './WelcomeTab';
 
 const TAURI = typeof window !== 'undefined' && window.__TAURI__;
@@ -235,6 +236,7 @@ const tabNames = {
   sounds: 'sounds',
   reference: 'reference',
   export: 'export',
+  utilities: 'utilities',
   console: 'console',
   settings: 'settings',
 };
@@ -273,6 +275,8 @@ function PanelContent({ context, tab }) {
       return <Reference />;
     case tabNames.export:
       return <ExportTab handleExport={context.handleExport} />;
+    case tabNames.utilities:
+      return <UtilitiesTab context={context} />;
     case tabNames.settings:
       return <SettingsTab started={context.started} />;
     case tabNames.files:

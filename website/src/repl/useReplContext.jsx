@@ -39,6 +39,11 @@ import './Repl.css';
 import { setInterval, clearInterval } from 'worker-timers';
 import { getMetadata } from '../metadata_parser';
 import { debugAudiograph } from './audiograph';
+import {
+  atlasRenderCurrentBundle,
+  atlasRenderCurrentPianoroll,
+  atlasRenderCurrentWav,
+} from './custom/atlas-render.mjs';
 
 const { latestCode, maxPolyphony, audioDeviceName, multiChannelOrbits } = settingsMap.get();
 let modulesLoading, presets, drawContext, clearCanvas, audioReady;
@@ -260,6 +265,22 @@ export function useReplContext() {
     }
     shareCode(code);
   };
+
+  const handleRenderWav = async (options = {}) => {
+    await editorRef.current.evaluate(false);
+    return atlasRenderCurrentWav(options);
+  };
+
+  const handleRenderPianoroll = async (options = {}) => {
+    await editorRef.current.evaluate(false);
+    return atlasRenderCurrentPianoroll(options);
+  };
+
+  const handleRenderBundle = async (options = {}) => {
+    await editorRef.current.evaluate(false);
+    return atlasRenderCurrentBundle(options);
+  };
+
   const context = {
     started,
     pending,
@@ -271,6 +292,9 @@ export function useReplContext() {
     handleShare,
     handleEvaluate,
     handleExport,
+    handleRenderWav,
+    handleRenderPianoroll,
+    handleRenderBundle,
     init,
     error,
     editorRef,

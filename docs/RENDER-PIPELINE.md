@@ -27,6 +27,12 @@ Loaded via:
 
 Available in REPL/global scope and also on `window.atlasRender`.
 
+There is also now a UI entry point for humans:
+- `website/src/repl/components/panel/UtilitiesTab.jsx`
+- surfaced in the REPL panel as the `utilities` tab
+
+This means mobile users do not need the browser console just to trigger common render actions.
+
 ### WAV helpers
 - `atlasRenderPatternWav(pattern, cps, options)`
 - `atlasRenderCurrentWav(options)`
