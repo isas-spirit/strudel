@@ -1,0 +1,19 @@
+{
+  "ak": [
+    "percussion/ak_00.wav",
+    "percussion/ak_01.wav"
+  ],
+  "as": [
+    "percussion/as_00.wav",
+    "percussion/as_01.wav"
+  ],
+  "ah": [
+    "percussion/ah_00.wav",
+    "percussion/ah_01.wav",
+    "percussion/ah_02.wav"
+  ],
+  "atx": [
+    "textures/atx_00.wav",
+    "textures/atx_01.wav"
+  ]
+}

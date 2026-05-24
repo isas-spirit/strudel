@@ -1,6 +1,8 @@
 import { Pattern, noteToMidi, valueToMidi } from '@strudel/core';
 import { aliasBank, registerSynthSounds, registerZZFXSounds, samples } from '@strudel/webaudio';
 import { registerSamplesFromDB } from './idbutils.mjs';
+import { preloadAtlasFoundation } from './custom/atlas-sample-library.mjs';
+import './custom/atlas-patterns.mjs';
 import './piano.mjs';
 import './files.mjs';
 import { settingsMap } from '@src/settings.mjs';
@@ -153,6 +155,7 @@ export async function prebake() {
         prebake: true,
       },
     ),
+    preloadAtlasFoundation(),
   ]);
 
   aliasBank(`${baseCDN}/tidal-drum-machines-alias.json`);

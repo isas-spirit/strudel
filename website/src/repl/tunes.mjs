@@ -288,3 +288,28 @@ n("[0,3] 2 [1,3] 2".fast(3).lastOf(4, fast(2))).clip(2)
   .slow(4)
   .stack(s("bd*4, [~ [hh hh? hh?]]*2,~ [sd ~ [sd:2? bd?]]").bank('RolandTR909').gain(.5).slow(2))
 `;
+
+export const atlasFoundry = `// "Atlas Foundry"
+// @by Vincent + Hermes
+// Demonstrates the co-creation foundation layer
+
+atlasSamples()
+setcpm(104)
+
+stack(
+  atlasDrums("ak*2 as, ah*8")
+    .atlasSwing(4, 1/3)
+    .atlasGhosts(1/8, 0.22)
+    .gain(.85),
+
+  n("0 1 0 2 0 1 0 2")
+    .s("ah")
+    .gain("0.18 0.12 0.16 0.1")
+    .slow(2),
+
+  atlasTexture("atx")
+    .gain(0.22)
+    .slow(2)
+    .room(.8)
+)
+`;
